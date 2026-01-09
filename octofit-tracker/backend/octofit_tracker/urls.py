@@ -34,15 +34,15 @@ def api_root(request):
     base_url = f"https://{codespace_name}-8000.app.github.dev" if codespace_name else request.build_absolute_uri('/').rstrip('/')
     
     return Response({
-        'teams': f"{base_url}/teams/",
-        'users': f"{base_url}/users/",
-        'activities': f"{base_url}/activities/",
-        'workouts': f"{base_url}/workouts/",
-        'leaderboards': f"{base_url}/leaderboards/",
+        'teams': f"{base_url}/api/teams/",
+        'users': f"{base_url}/api/users/",
+        'activities': f"{base_url}/api/activities/",
+        'workouts': f"{base_url}/api/workouts/",
+        'leaderboards': f"{base_url}/api/leaderboards/",
     })
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', api_root),
-    path('', include(router.urls)),
+    path('api/', include(router.urls)),
 ]
